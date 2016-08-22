@@ -1,0 +1,47 @@
+ <!doctype html>
+ <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<title>Cognify Celebs</title>
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
+  <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/css/main.css" rel="stylesheet">
+
+ </head>
+
+ 	  <form action="" method=post>
+        <div class="form-group">
+          <label for="sel1">Select Year</label>
+          <select class="form-control" id="sel1" size="1" name="year">
+            {% for year in years %}
+	            <option>{{year}}</option>
+	        {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sel1">Select Unit</label>
+          <select class="form-control" id="sel1" size="1" name="room">
+            {% for room in rooms %}
+	            <option>{{room}}</option>
+	        {% endfor %}
+          </select>
+        </div>
+        <button type="submit" name='btn' value="display" class="btn btn-default">Display Tabular Results</button>
+      </form>
+
+    <h3>{{myFoo | safe}}</h3>
+
+    <h3>{{no_data_msg}}</h3>
+    
+	{% for myDF in myDFs %}
+		<h3>{{myDF['df'].to_html() | safe}}</h3>
+	{% endfor %}
+  <div class="container">
+    <h2>Traffic Report</h2>
+    {{myDF|safe}}
+  </div>
+
+    
+
+
+
+
