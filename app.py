@@ -1,7 +1,6 @@
 from flask import Flask, request, redirect, render_template, send_file
 import pandas as pd
 import os
-from colger import create_pivots
 
 
 def create_app():
@@ -10,6 +9,7 @@ def create_app():
 
 app = create_app()
 
+"""
 @app.route("/", methods=['GET', 'POST'])
 def index():
     print "running"
@@ -25,8 +25,9 @@ def index():
                     return render_template('index.html', myFoo=myFiltDF.to_html(), years=years, rooms=rooms)
             return render_template('index.html', years=years, rooms=rooms, no_data_msg="No Data for that Unit & Year")
     return render_template('index.html', years=years, rooms=rooms)
+"""
 
-@app.route("/test", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def test():
     df = pd.read_excel('Traffic Report Sample_gus.xlsx')
     filt_df = df[df['Year'] == 2016]
@@ -41,5 +42,5 @@ def test():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    #app.run(host='0.0.0.0', port=int(port), debug=True)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(port), debug=True)
+    #app.run(debug=True)
