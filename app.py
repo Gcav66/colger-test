@@ -25,8 +25,17 @@ def test():
             filt_df = year_df[year_df['rmpropid'] == int(prop)]
             pivot_df = pd.pivot_table(filt_df, values='nameid', columns='Action', index='mrktname', aggfunc='count')
             cdf = pd.pivot_table(filt_df, columns='Action', index='leasagid', values='nameid', aggfunc='count', margins=True)
-            tdf = pd.pivot_table(df, values='nameid', index='Month', aggfunc='count')
-            return render_template('report.html', myDF=pivot_df.to_html(), cdf=cdf.to_html(), tdf=tdf.to_html())
+            tdf = pd.pivot_table(filt_df, values='nameid', index='Month', aggfunc='count')
+            try:
+                t_out = tdf.to_html()
+            except AttributeError:
+                t_out = tdf.to_frame().to_html()
+            sdf = pd.pivot_table(filt_df, values='nameid', index='mrktname', aggfunc='count')
+            try:
+                s_out = sdf.to_html()
+            except AttributeError:
+                s_out = sdf.to_frame().to_html()
+            return render_template('report.html', myDF=pivot_df.to_html(), cdf=cdf.to_html(), tdf=t_out, sdf=s_out, prop=prop, year=year)
     return render_template('index.html', years=years, props_2015=props_2015, props_2016=props_2016)
 
 

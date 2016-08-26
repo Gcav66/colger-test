@@ -11,7 +11,7 @@
 <body>
   <div class="container">
     <div class="row">
-      <h1>Traffic Report</h1>
+      <h1>Traffic Report Property {{prop}} Year {{year}}</h1>
         <div class="col-md-6">
           <h2>Market Name</h2>
           {{myDF|safe}}
@@ -25,6 +25,10 @@
       <div class="col-md-6">
         <h2>Annual Total</h2>
         {{tdf|safe}}
+      </div>
+      <div class="col-md-6">
+        <h2>Annual Total</h2>
+        {{sdf|safe}}
       </div>
     </div>
   </div>
