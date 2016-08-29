@@ -10,6 +10,19 @@
  <body>
   <div class="container">
     <div class="row">
+      <div class="col-md-12">
+        <p></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Borger Management Dashboard</h1>
+      </div>
+      <div class="col-md-4">
+        <img alt="Borger" src="static/img/borger_logo_2.png"></img>
+      </div>
+    </div>
+    <div class="row">
  	    <form action="" method=post>
         <div class="form-group">
           <label for="sel1">Select Year</label>
@@ -19,7 +32,7 @@
 	        {% endfor %}
           </select>
         </div>
-        <button type='button' name='btn' value="get_year" class="btn btn-default" onclick="myFunction()">Select Year</button>
+        <button type='button' name='btn' value="get_year" class="btn btn-default" onclick="myFunction()">Generate Properties</button>
         <div class="form-group">
           <label for="sel1">Select Unit</label>
           <select class="form-control" id="prop_id" size="1" name="room">
@@ -29,6 +42,7 @@
           </select>
         </div>
         <button type="submit" name='btn' value="display" class="btn btn-default">Display Tabular Results</button>
+        <button type="submit" name='btn' value="download" class="btn btn-default">Download Spreadsheet</button>
       </form>
     </div>
   </div>
@@ -36,6 +50,7 @@
 
 <script>
 function myFunction() {
+    removeOptions(document.getElementById("prop_id"));
     var x = document.getElementById("prop_id");
     var y = document.getElementById("yr");
     var yr = y.options[y.selectedIndex].text;
@@ -59,6 +74,15 @@ function myFunction() {
         greeting = "Good evening";
     }
 
+}
+
+function removeOptions(selectbox)
+{
+    var i;
+    for(i = selectbox.options.length - 1 ; i >= 0 ; i--)
+    {
+        selectbox.remove(i);
+    }
 }
 </script>
 </body>
